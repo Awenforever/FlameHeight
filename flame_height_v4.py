@@ -486,32 +486,31 @@ class VideoAnalyzer:
 
 
 if __name__ == "__main__":
-    if __name__ == "__main__":
-        # 1. Check if paths were passed via command line (drag and drop)
-        input_paths = sys.argv[1:]
+    # 1. Check if paths were passed via command line (drag and drop)
+    input_paths = sys.argv[1:]
 
-        # 2. If no paths, pop up a file selection dialog
-        if not input_paths:
-            root = tk.Tk()
-            root.withdraw()  # Hide the main tiny Tkinter window
-            root.attributes('-topmost', True)  # Bring the dialog to the front
+    # 2. If no paths, pop up a file selection dialog
+    if not input_paths:
+        root = tk.Tk()
+        root.withdraw()  # Hide the main tiny Tkinter window
+        root.attributes('-topmost', True)  # Bring the dialog to the front
 
-            # Define supported video extensions for cv2.VideoCapture
-            video_types = [
-                ("Video files", "*.mp4 *.avi *.mov *.mkv *.wmv *.mts"),
-                ("All files", "*.*")
-            ]
+        # Define supported video extensions for cv2.VideoCapture
+        video_types = [
+            ("Video files", "*.mp4 *.avi *.mov *.mkv *.wmv *.mts"),
+            ("All files", "*.*")
+        ]
 
-            selected_files = filedialog.askopenfilenames(
-                title="Select Flame Videos to Analyze",
-                filetypes=video_types
-            )
+        selected_files = filedialog.askopenfilenames(
+            title="Select Flame Videos to Analyze",
+            filetypes=video_types
+        )
 
-            if selected_files:
-                input_paths = list(selected_files)
-            else:
-                print("No files selected. Exiting.")
-                sys.exit()
+        if selected_files:
+            input_paths = list(selected_files)
+        else:
+            print("No files selected. Exiting.")
+            sys.exit()
 
-        # 3. Run the analyzer
-        VideoAnalyzer(input_paths).run()
+    # 3. Run the analyzer
+    VideoAnalyzer(input_paths).run()
